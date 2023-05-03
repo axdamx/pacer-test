@@ -1,15 +1,24 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  GestureResponderEvent,
+} from 'react-native';
 
 interface Props {
   name: string;
+  onPress?: ((event: GestureResponderEvent) => void) | undefined;
 }
 
 const Card = (props: Props) => {
   return (
-    <View style={styles.cardStyle}>
-      <Text>{props.name}</Text>
-    </View>
+    <TouchableOpacity onPress={props.onPress}>
+      <View style={styles.cardStyle}>
+        <Text>{props.name}</Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 
