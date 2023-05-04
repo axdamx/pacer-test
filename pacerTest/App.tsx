@@ -19,11 +19,9 @@ import {Text} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import DashboardInfoScreen from './src/screens/DasboardInfo';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import createSagaMiddleware from 'redux-saga';
 import {applyMiddleware, createStore} from 'redux';
-import rootSaga from './src/sagas';
 import rootReducer from './src/reducers';
-import {Provider, useDispatch} from 'react-redux';
+import {Provider} from 'react-redux';
 import {composeWithDevTools} from '@redux-devtools/extension';
 
 const slides = [
