@@ -19,6 +19,12 @@ import {Text} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import DashboardInfoScreen from './src/screens/DasboardInfo';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import createSagaMiddleware from 'redux-saga';
+import {applyMiddleware, createStore} from 'redux';
+import rootSaga from './src/sagas';
+import rootReducer from './src/reducers';
+import {Provider, useDispatch} from 'react-redux';
+import {composeWithDevTools} from '@redux-devtools/extension';
 
 const slides = [
   {
@@ -88,6 +94,19 @@ const DashboardStackScreen = () => {
   );
 };
 
+const sagaMiddleware = createSagaMiddleware();
+
+const middlewares = [sagaMiddleware];
+const createDebugger = require('redux-flipper').default;
+middlewares.push(createDebugger());
+
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(...middlewares)),
+);
+
+sagaMiddleware.run(rootSaga);
+
 function App(): JSX.Element {
   const [showHomePage, setShowHomePage] = useState(false);
   const buttonLabel = (label: string) => {
@@ -106,7 +125,6 @@ function App(): JSX.Element {
       <AppIntroSlider
         data={slides}
         renderItem={({item}) => {
-          console.log('item', item);
           return (
             <View
               style={{
@@ -153,62 +171,64 @@ function App(): JSX.Element {
   }
 
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        initialRouteName="Dashboard"
-        screenOptions={{
-          tabBarActiveTintColor: COLORS.primary,
-          tabBarInactiveTintColor: COLORS.lightGrey,
-          tabBarLabelStyle: {
-            fontWeight: 'bold',
-          },
-          headerShown: false,
-        }}>
-        <Tab.Screen
-          name="Dashboard"
-          component={DashboardStackScreen}
-          options={{
-            tabBarIcon: ({color}) => (
-              <Icon name="history" size={20} color={color} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Profile"
-          component={ProfileScreen}
-          options={{
-            tabBarIcon: ({color}) => (
-              <Icon name="face-man-profile" size={20} color={color} />
-            ),
-            headerShown: true,
-            headerStyle: {
-              backgroundColor: COLORS.primary,
+    <Provider store={store}>
+      <NavigationContainer>
+        <Tab.Navigator
+          initialRouteName="Dashboard"
+          screenOptions={{
+            tabBarActiveTintColor: COLORS.primary,
+            tabBarInactiveTintColor: COLORS.lightGrey,
+            tabBarLabelStyle: {
+              fontWeight: 'bold',
             },
-            headerTitleStyle: {
-              color: COLORS.white,
-              fontWeight: '800',
-            },
-          }}
-        />
-        <Tab.Screen
-          name="Setting"
-          component={SettingScreen}
-          options={{
-            tabBarIcon: ({color}) => (
-              <Icon name="cogs" size={20} color={color} />
-            ),
-            headerShown: true,
-            headerStyle: {
-              backgroundColor: COLORS.primary,
-            },
-            headerTitleStyle: {
-              color: COLORS.white,
-              fontWeight: '800',
-            },
-          }}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
+            headerShown: false,
+          }}>
+          <Tab.Screen
+            name="Dashboard"
+            component={DashboardStackScreen}
+            options={{
+              tabBarIcon: ({color}) => (
+                <Icon name="history" size={20} color={color} />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="Profile"
+            component={ProfileScreen}
+            options={{
+              tabBarIcon: ({color}) => (
+                <Icon name="face-man-profile" size={20} color={color} />
+              ),
+              headerShown: true,
+              headerStyle: {
+                backgroundColor: COLORS.primary,
+              },
+              headerTitleStyle: {
+                color: COLORS.white,
+                fontWeight: '800',
+              },
+            }}
+          />
+          <Tab.Screen
+            name="Setting"
+            component={SettingScreen}
+            options={{
+              tabBarIcon: ({color}) => (
+                <Icon name="cogs" size={20} color={color} />
+              ),
+              headerShown: true,
+              headerStyle: {
+                backgroundColor: COLORS.primary,
+              },
+              headerTitleStyle: {
+                color: COLORS.white,
+                fontWeight: '800',
+              },
+            }}
+          />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
 

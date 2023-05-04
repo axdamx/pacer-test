@@ -1,15 +1,17 @@
 import React from 'react';
 
 import {View, Text, StyleSheet} from 'react-native';
+import {useSelector} from 'react-redux';
+import {weatherNameData} from '../selectors';
 
-const DashboardInfoScreen = ({route}) => {
-  const data = route.params.title;
+const DashboardInfoScreen = () => {
+  const newOne = useSelector(weatherNameData);
 
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Dashboard Screen</Text>
       <View>
-        <Text>{data}</Text>
+        <Text>{newOne}</Text>
       </View>
     </View>
   );
