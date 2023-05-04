@@ -94,9 +94,7 @@ const DashboardStackScreen = () => {
   );
 };
 
-const sagaMiddleware = createSagaMiddleware();
-
-const middlewares = [sagaMiddleware];
+const middlewares = [];
 const createDebugger = require('redux-flipper').default;
 middlewares.push(createDebugger());
 
@@ -104,8 +102,6 @@ const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(...middlewares)),
 );
-
-sagaMiddleware.run(rootSaga);
 
 function App(): JSX.Element {
   const [showHomePage, setShowHomePage] = useState(false);
