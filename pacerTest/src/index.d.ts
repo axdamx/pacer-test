@@ -37,7 +37,7 @@ declare namespace weatherData {
         main: string;
       },
     ];
-    winds: {
+    wind: {
       deg: number;
       speed: number;
     };

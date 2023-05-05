@@ -4,6 +4,8 @@ export const weatherDataLol = (state: GlobalState) => state.weatherData;
 export const getIsFetching = (state: GlobalState) => state.isFetching;
 
 export const weatherNameData = createSelector(weatherDataLol, x => x?.name);
+export const weatherDataArray = createSelector(weatherDataLol, x => x?.weather);
+export const weatherTemperature = createSelector(weatherDataLol, x => x?.main);
 // export const weatherNameOnly = createSelector(weatherNameData, x => x?.name);
 // const todos = state => state.weatherData;
 // export const todosV2 = createSelector(todos, x => x?.data);

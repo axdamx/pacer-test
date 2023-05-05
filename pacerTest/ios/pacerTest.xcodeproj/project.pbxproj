@@ -37,6 +37,8 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = pacerTest/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = pacerTest/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-pacerTest-pacerTestTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-pacerTest-pacerTestTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		36BB67742A0412F100BE34BC /* pacerTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = pacerTest.entitlements; path = pacerTest/pacerTest.entitlements; sourceTree = "<group>"; };
+		36BB67752A04292300BE34BC /* pacerTestRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = pacerTestRelease.entitlements; path = pacerTest/pacerTestRelease.entitlements; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-pacerTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pacerTest.debug.xcconfig"; path = "Target Support Files/Pods-pacerTest/Pods-pacerTest.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-pacerTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pacerTest.release.xcconfig"; path = "Target Support Files/Pods-pacerTest/Pods-pacerTest.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-pacerTest-pacerTestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pacerTest-pacerTestTests.debug.xcconfig"; path = "Target Support Files/Pods-pacerTest-pacerTestTests/Pods-pacerTest-pacerTestTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -86,6 +88,8 @@
 		13B07FAE1A68108700A75B9A /* pacerTest */ = {
 			isa = PBXGroup;
 			children = (
+				36BB67742A0412F100BE34BC /* pacerTest.entitlements */,
+				36BB67752A04292300BE34BC /* pacerTestRelease.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -485,7 +489,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = pacerTest/pacerTest.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3F9ZJ33XLL;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = pacerTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -500,6 +508,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = pacerTest;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -512,7 +521,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = pacerTest/pacerTestRelease.entitlements;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = pacerTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -524,8 +536,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.pacerTest;
 				PRODUCT_NAME = pacerTest;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

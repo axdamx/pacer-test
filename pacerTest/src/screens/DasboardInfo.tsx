@@ -1,30 +1,57 @@
 import React from 'react';
 
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Image} from 'react-native';
 import {useSelector} from 'react-redux';
-import {weatherNameData} from '../selectors';
+import {weatherDataLol} from '../selectors';
+import WeatherDetailsInfo from '../components/WeatherDetailsInfo';
 
 const DashboardInfoScreen = () => {
-  const newOne = useSelector(weatherNameData);
+  const mainData = useSelector(weatherDataLol);
+  console.log('maindata', mainData);
+  const {
+    main: {temp},
+    weather: [details],
+    name,
+  } = mainData;
+  const {icon, main, description} = details;
+
+  const iconUrl = `https://openweathermap.org/img/wn/${icon}@4x.png`;
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.header}>Dashboard Screen</Text>
-      <View>
-        <Text>{newOne}</Text>
+    <View style={{flex: 1}}>
+      <View style={styles.weatherInfo}>
+        <Text>{name}</Text>
+        <Image style={styles.weatherIcon} source={{uri: iconUrl}} />
+        <Text style={styles.textPrimary}>{temp}°</Text>
+        <Text style={styles.weatherDescription}>{description}</Text>
+        <Text style={styles.textSecondary}>{main}</Text>
       </View>
+      <WeatherDetailsInfo />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 16,
-    marginTop: 48,
+  weatherInfo: {
+    marginTop: 50,
+    alignItems: 'center',
   },
-  header: {
-    fontWeight: 'bold',
-    fontSize: 15,
+  weatherIcon: {
+    width: 100,
+    height: 100,
+  },
+  weatherDescription: {
+    textTransform: 'capitalize',
+  },
+  textPrimary: {
+    fontSize: 40,
+    color: 'black',
+  },
+  textSecondary: {
+    fontSize: 20,
+    color: 'grey',
+    fontWeight: '500',
+    marginTop: 10,
   },
 });
 
