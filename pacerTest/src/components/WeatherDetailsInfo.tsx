@@ -17,6 +17,7 @@ const WeatherDetailsInfo = () => {
     <View style={styles.weatherDetails}>
       <View style={styles.weatherDetailsRow}>
         <View
+          // eslint-disable-next-line react-native/no-inline-styles
           style={{
             ...styles.weatherDetailsBox,
             borderRightWidth: 1,
@@ -41,12 +42,14 @@ const WeatherDetailsInfo = () => {
         </View>
       </View>
       <View
+        // eslint-disable-next-line react-native/no-inline-styles
         style={{
           ...styles.weatherDetailsRow,
           borderTopWidth: 1,
           borderTopColor: 'grey',
         }}>
         <View
+          // eslint-disable-next-line react-native/no-inline-styles
           style={{
             ...styles.weatherDetailsBox,
             borderRightWidth: 1,

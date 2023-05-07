@@ -18,7 +18,7 @@ const WeatherInfoScreen = () => {
   const iconUrl = `https://openweathermap.org/img/wn/${icon}@4x.png`;
 
   return (
-    <View style={{flex: 1}}>
+    <View style={styles.mainView}>
       <View style={styles.weatherInfo}>
         <Text>{name}</Text>
         <Image style={styles.weatherIcon} source={{uri: iconUrl}} />
@@ -52,6 +52,9 @@ const styles = StyleSheet.create({
     color: 'grey',
     fontWeight: '500',
     marginTop: 10,
+  },
+  mainView: {
+    flex: 1,
   },
 });
 

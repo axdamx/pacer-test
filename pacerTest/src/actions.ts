@@ -12,4 +12,8 @@ export const mainDashboardActions = {
   getDistanceRunningWalkingSuccess: createAction<
     distanceRunningWalking.GetDistanceRunningWalking[]
   >('GET_DISTANCE_RUNNING_WALKING_SUCCESS'),
+
+  submitStepsAndWalkingGoalsSuccess: createAction<StepsAndWalkingGoals.State>(
+    'SUBMIT_STEPS_AND_WALKING_GOALS_SUCCESS',
+  ),
 };

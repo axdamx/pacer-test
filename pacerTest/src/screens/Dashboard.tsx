@@ -16,6 +16,7 @@ import {
   formattedDailyStepsArray,
   formattedDistanceRunningWalkingArray,
   getIsFetching,
+  stepsAndWalkingGoals,
   weatherDataArray,
   weatherNameData,
   weatherTemperature,
@@ -41,6 +42,7 @@ const DashboardScreen = () => {
   const formattedDistanceRunningWalking = useSelector(
     formattedDistanceRunningWalkingArray,
   );
+  const stepsAndWalkingGoalsData = useSelector(stepsAndWalkingGoals);
 
   const permissions = {
     permissions: {
@@ -132,18 +134,14 @@ const DashboardScreen = () => {
     return (
       <TouchableOpacity onPress={() => navigation.navigate('WeatherInfo')}>
         <View>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}>
+          <View style={styles.mainWeatherContainer}>
             <Icon
               name={weatherFormattedData.icon}
               size={100}
               color={weatherFormattedData.color}
             />
             <Text
+              // eslint-disable-next-line react-native/no-inline-styles
               style={{
                 fontSize: 40,
                 fontWeight: 'bold',
@@ -152,11 +150,28 @@ const DashboardScreen = () => {
               {temperature?.temp}°
             </Text>
           </View>
-          <Text style={{fontSize: 30, fontWeight: 'bold'}}> {name} </Text>
-          <Text style={{fontSize: 20}}> {weatherFormattedData?.title}</Text>
-          <Text style={{fontSize: 20}}> {weatherDescription}</Text>
+          <Text style={styles.boldName}> {name} </Text>
+          <Text style={styles.fontSize20}> {weatherFormattedData?.title}</Text>
+          <Text style={styles.fontSize20}> {weatherDescription}</Text>
         </View>
       </TouchableOpacity>
+    );
+  };
+
+  const renderDailyStepsAndWalkingGoals = () => {
+    const {dailySteps, walkingGoals} = stepsAndWalkingGoalsData;
+    const goals = walkingGoals / 1000;
+    const formattedGoals = goals.toFixed(2);
+
+    return (
+      <View style={styles.goalsContainer}>
+        <Text style={styles.goalsText}>
+          This your targeted step goals per day: {dailySteps}
+        </Text>
+        <Text style={styles.goalsText}>
+          This your targeted walking goals per day: {formattedGoals}KM
+        </Text>
+      </View>
     );
   };
 
@@ -165,18 +180,9 @@ const DashboardScreen = () => {
       return formattedDailySteps.map((x, index) => {
         const formattedSteps = Math.floor(x.value);
         return (
-          <View
-            key={index}
-            style={{
-              backgroundColor: COLORS.primary,
-              padding: 15,
-              marginVertical: 5,
-              borderRadius: 15,
-            }}>
+          <View key={index} style={styles.dailyStepsContainer}>
             <Text>{`Date: ${x.date}`}</Text>
-            <Text style={{fontSize: 20, fontWeight: 'bold'}}>
-              {formattedSteps}
-            </Text>
+            <Text style={styles.dailyStepsText}>{formattedSteps}</Text>
           </View>
         );
       });
@@ -190,20 +196,10 @@ const DashboardScreen = () => {
         const distance = x.value / 1000;
         const formattedDistance = distance.toFixed(2);
         return (
-          <View
-            key={index}
-            style={{
-              backgroundColor: COLORS.primary,
-              padding: 15,
-              marginVertical: 5,
-              borderRadius: 15,
-            }}>
+          <View key={index} style={styles.dailyStepsContainer}>
             <Text>{`Date: ${x.date}`}</Text>
             <Text
-              style={{
-                fontSize: 20,
-                fontWeight: 'bold',
-              }}>{`${formattedDistance} KM`}</Text>
+              style={styles.dailyStepsText}>{`${formattedDistance} KM`}</Text>
           </View>
         );
       });
@@ -219,24 +215,13 @@ const DashboardScreen = () => {
         ) : (
           <View>{renderMainWeatherDisplayData()}</View>
         )}
-        <View style={{marginTop: 5, marginBottom: 25}}>
-          <Text
-            style={{
-              fontSize: 40,
-              fontWeight: 'bold',
-              textAlign: 'center',
-            }}>
-            Your Daily steps
-          </Text>
+        {renderDailyStepsAndWalkingGoals()}
+        <View style={styles.dailyStepsViewContainer}>
+          <Text style={styles.dailyMainStepsTitle}>Your Daily steps</Text>
           {renderDailySteps()}
         </View>
-        <View style={{marginTop: 5, marginBottom: 25}}>
-          <Text
-            style={{
-              fontSize: 40,
-              fontWeight: 'bold',
-              textAlign: 'center',
-            }}>
+        <View style={styles.dailyStepsViewContainer}>
+          <Text style={styles.dailyMainStepsTitle}>
             Your Running Walking Distance
           </Text>
           {renderDistanceWalkingRunning()}
@@ -253,6 +238,47 @@ const styles = StyleSheet.create({
   header: {
     fontWeight: 'bold',
     fontSize: 15,
+  },
+  mainWeatherContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  boldName: {
+    fontSize: 30,
+    fontWeight: 'bold',
+  },
+  fontSize20: {
+    fontSize: 20,
+  },
+  goalsContainer: {
+    padding: 15,
+    marginVertical: 15,
+    alignItems: 'center',
+  },
+  goalsText: {
+    color: COLORS.primary,
+    fontSize: 15,
+    fontWeight: 'bold',
+  },
+  dailyStepsContainer: {
+    backgroundColor: COLORS.primary,
+    padding: 15,
+    marginVertical: 5,
+    borderRadius: 15,
+  },
+  dailyStepsText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  dailyStepsViewContainer: {
+    marginTop: 5,
+    marginBottom: 25,
+  },
+  dailyMainStepsTitle: {
+    fontSize: 40,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
 

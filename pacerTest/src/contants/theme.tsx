@@ -2,6 +2,10 @@ import {Dimensions} from 'react-native';
 
 const {width, height} = Dimensions.get('screen');
 
+export const PADDING = {
+  default: 15,
+};
+
 export const COLORS = {
   primary: '#f52d56',
   title: '#072F4A',

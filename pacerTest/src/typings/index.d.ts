@@ -3,4 +3,5 @@ declare interface GlobalState {
   isFetching: boolean;
   dailySteps: dailySteps.State[];
   distanceRunningWalking: distanceRunningWalking.State[];
+  stepsAndWalkingGoals: StepsAndWalkingGoals.State;
 }

@@ -20,6 +20,10 @@ const initialState = {
       value: 0,
     },
   ],
+  stepsAndWalkingGoals: {
+    dailySteps: 0,
+    walkingGoals: 0,
+  },
 };
 
 const weatherData = createReducer(initialState.data, builder => {
@@ -51,10 +55,21 @@ const distanceRunningWalking = createReducer(
   },
 );
 
+const stepsAndWalkingGoals = createReducer(
+  initialState.stepsAndWalkingGoals,
+  builder => {
+    builder.addCase(
+      mainDashboardActions.submitStepsAndWalkingGoalsSuccess,
+      (_, action) => action.payload,
+    );
+  },
+);
+
 const rootReducer = combineReducers({
   weatherData,
   isFetching,
   dailySteps,
   distanceRunningWalking,
+  stepsAndWalkingGoals,
 });
 export default rootReducer;

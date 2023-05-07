@@ -81,3 +81,10 @@ declare namespace distanceRunningWalking {
     value: number;
   }
 }
+
+declare namespace StepsAndWalkingGoals {
+  interface State {
+    dailySteps: number;
+    walkingGoals: number;
+  }
+}

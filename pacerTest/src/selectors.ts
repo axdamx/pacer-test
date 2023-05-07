@@ -5,6 +5,8 @@ export const getIsFetching = (state: GlobalState) => state.isFetching;
 const dailySteps = (state: GlobalState) => state.dailySteps;
 const distanceRunningWalking = (state: GlobalState) =>
   state.distanceRunningWalking;
+export const stepsAndWalkingGoals = (state: GlobalState) =>
+  state.stepsAndWalkingGoals;
 
 export const weatherNameData = createSelector(weatherDataLol, x => x?.name);
 export const weatherDataArray = createSelector(weatherDataLol, x => x?.weather);
