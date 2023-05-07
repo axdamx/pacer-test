@@ -52,7 +52,7 @@ const DashboardStackScreen = () => {
         }}
       />
       <DashboardStack.Screen
-        name="Weather Info"
+        name="WeatherInfo"
         component={WeatherInfoScreen}
         options={{
           headerStyle: {
