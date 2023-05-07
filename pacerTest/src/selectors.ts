@@ -2,26 +2,44 @@ import {createSelector} from '@reduxjs/toolkit';
 
 export const weatherDataLol = (state: GlobalState) => state.weatherData;
 export const getIsFetching = (state: GlobalState) => state.isFetching;
+const dailySteps = (state: GlobalState) => state.dailySteps;
+const distanceRunningWalking = (state: GlobalState) =>
+  state.distanceRunningWalking;
 
 export const weatherNameData = createSelector(weatherDataLol, x => x?.name);
 export const weatherDataArray = createSelector(weatherDataLol, x => x?.weather);
 export const weatherTemperature = createSelector(weatherDataLol, x => x?.main);
-// export const weatherNameOnly = createSelector(weatherNameData, x => x?.name);
-// const todos = state => state.weatherData;
-// export const todosV2 = createSelector(todos, x => x?.data);
 
-// export const testIsFetching = createSelector(haha, x => x);
-// export const getIsFetching = createSelector(weatherDataLol, x => x?.fetching);
-// export const weatherDataTest = createSelector(weatherDataLol, x => {
-//   console.log('apa ni dalam reducer', weatherDataLol);
-//   x?.data;
-// });
+export const formattedDailyStepsArray = createSelector(dailySteps, x => {
+  const groupedData = x.reduce((acc, curr) => {
+    const date = curr.startDate.slice(0, 10); // Extract date from start date
+    if (!acc[date]) {
+      acc[date] = {date: date, value: 0};
+    }
+    acc[date].value += curr.value;
+    return acc;
+  }, {});
 
-// export const weatherDataName = createSelector(weatherDataTest, x => x?.name);
+  // Convert object to array
+  const result: dailySteps.GetStepsFormatted[] = Object.values(groupedData);
+  return result;
+});
 
-// export const getName = createSelector(weatherDataLol, x => {
-//   if (!x?.data) {
-//     return null;
-//   }
-//   return x?.data.name;
-// });
+export const formattedDistanceRunningWalkingArray = createSelector(
+  distanceRunningWalking,
+  x => {
+    const groupedData = x.reduce((acc, curr) => {
+      const date = curr.startDate.slice(0, 10); // Extract date from start date
+      if (!acc[date]) {
+        acc[date] = {date: date, value: 0};
+      }
+      acc[date].value += curr.value;
+      return acc;
+    }, {});
+
+    // Convert object to array
+    const result: distanceRunningWalking.GetDistanceRunningWalkingFormatted[] =
+      Object.values(groupedData);
+    return result;
+  },
+);

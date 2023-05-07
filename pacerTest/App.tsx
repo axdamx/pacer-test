@@ -17,12 +17,12 @@ import {Image, View} from 'react-native';
 import {COLORS, SIZES} from './src/contants/theme';
 import {Text} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import DashboardInfoScreen from './src/screens/DasboardInfo';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {applyMiddleware, createStore} from 'redux';
 import rootReducer from './src/reducers';
 import {Provider} from 'react-redux';
 import {composeWithDevTools} from '@redux-devtools/extension';
+import WeatherInfoScreen from './src/screens/WeatherInfoScreen';
 
 const slides = [
   {
@@ -52,6 +52,7 @@ export type RootStackParams = {
   Dashboard: any;
   Profile: any;
   Setting: any;
+  WeatherInfo: any;
 };
 
 const Tab = createBottomTabNavigator();
@@ -61,7 +62,7 @@ const DashboardStackScreen = () => {
   return (
     <DashboardStack.Navigator>
       <DashboardStack.Screen
-        name="Dashboard"
+        name="Main Dashboard"
         component={DashboardScreen}
         options={{
           headerStyle: {
@@ -71,12 +72,12 @@ const DashboardStackScreen = () => {
             color: COLORS.white,
             fontWeight: '800',
           },
-          headerBackTitleVisible: false, // this
+          headerBackTitleVisible: false,
         }}
       />
       <DashboardStack.Screen
-        name="DashboardInfo"
-        component={DashboardInfoScreen}
+        name="WeatherInfo"
+        component={WeatherInfoScreen}
         options={{
           headerStyle: {
             backgroundColor: COLORS.primary,

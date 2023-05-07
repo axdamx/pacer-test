@@ -43,3 +43,41 @@ declare namespace weatherData {
     };
   }
 }
+
+declare namespace dailySteps {
+  interface State {
+    endDate: string;
+    startDate: string;
+    value: number;
+  }
+
+  interface GetSteps {
+    startDate: string;
+    endDate: string;
+    value: number;
+  }
+
+  interface GetStepsFormatted {
+    date: string;
+    value: number;
+  }
+}
+
+declare namespace distanceRunningWalking {
+  interface State {
+    endDate: string;
+    startDate: string;
+    value: number;
+  }
+
+  interface GetDistanceRunningWalking {
+    startDate: string;
+    endDate: string;
+    value: number;
+  }
+
+  interface GetDistanceRunningWalkingFormatted {
+    date: string;
+    value: number;
+  }
+}

@@ -5,7 +5,7 @@ import {useSelector} from 'react-redux';
 import {weatherDataLol} from '../selectors';
 import WeatherDetailsInfo from '../components/WeatherDetailsInfo';
 
-const DashboardInfoScreen = () => {
+const WeatherInfoScreen = () => {
   const mainData = useSelector(weatherDataLol);
   console.log('maindata', mainData);
   const {
@@ -55,4 +55,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DashboardInfoScreen;
+export default WeatherInfoScreen;
