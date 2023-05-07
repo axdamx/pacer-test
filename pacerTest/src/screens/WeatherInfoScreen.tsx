@@ -7,7 +7,6 @@ import WeatherDetailsInfo from '../components/WeatherDetailsInfo';
 
 const WeatherInfoScreen = () => {
   const mainData = useSelector(weatherDataLol);
-  console.log('maindata', mainData);
   const {
     main: {temp},
     weather: [details],
