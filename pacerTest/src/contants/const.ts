@@ -1,23 +1,20 @@
 export const slides = [
   {
     id: 1,
-    title: 'Discover Best Places',
-    description:
-      '“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"',
+    title: 'Why dont scientists trust atoms?',
+    description: 'Because they make up everything!',
     image: require('../assets/onboardScreen1.png'),
   },
   {
     id: 2,
-    title: 'Choose A Tasty Dish',
-    description:
-      '“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"',
+    title: 'What do you call a can opener that doesnt work?',
+    description: 'A cant opener!',
     image: require('../assets/onboardScreen2.png'),
   },
   {
     id: 3,
-    title: 'Pick Up The Delivery',
-    description:
-      '“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"',
+    title: 'Why dont oysters give to charity?',
+    description: 'Because theyre shellfish!',
     image: require('../assets/onboardScreen3.png'),
   },
 ];
